@@ -10,7 +10,7 @@ public class StartingApplication {
 		
 		ApplicationContext context=SpringApplication.run(StartingApplication.class, args);
 
-		ToDo todo1=context.getBean(Todo.class);
+		ToDo todo1=context.getBean(ToDo.class);
 		todo1.details();
 	}
 
