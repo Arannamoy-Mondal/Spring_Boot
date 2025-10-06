@@ -4,6 +4,7 @@
 ### Select JRE version:
 
 ```bash
+sudo apt install openjdk-17-jdk -y
 sudo update-alternatives --config java
 ```
 
