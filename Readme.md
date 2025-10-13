@@ -163,3 +163,6 @@ Database (MySQL/PostgreSQL/H2)
 * এই layered architecture Django এর **views → models → templates** এর মতো।
 * Spring Boot-এ আরও modular এবং Java ecosystem friendly, plus REST API, Microservices সহজে integrate করা যায়।
 
+
+
+### JDBC
