@@ -202,7 +202,11 @@ create database "Hibernate";
 ```
 
 ```sql
-\l
+\l # db list
+```
+
+```sql
+\c dbName # Switch between multiple db
 ```
 
 

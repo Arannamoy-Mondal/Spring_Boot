@@ -1,0 +1,10 @@
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Connection Settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/HIBERNATE</property>
+        <property name="hibernate.connection.username">user</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+    </session-factory>
+</hibernate-configuration>
