@@ -217,9 +217,63 @@ create database "Hibernate";
     <session-factory>
         <!-- JDBC Connection Settings -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/HIBERNATE</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Practice_Hibernate_1</property>
         <property name="hibernate.connection.username">user</property>
         <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
     </session-factory>
 </hibernate-configuration>
+
 ```
+
+
+### Established connection
+
+```java
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+try {
+        Student std1 = new Student();
+        std1.setRoll(4);
+        std1.setName("User Four");
+        std1.setAge(23);
+        Laptop laptop1=new Laptop();
+        laptop1.setBrand("Lenovo");
+        laptop1.setModel("LOQ 13");
+        laptop1.setRam(16);
+        laptop1.setId(01);
+        std1.setLaptop(laptop1);
+        Configuration configuration = new Configuration().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class).configure();
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction(); /*Because hibernate follows ACID (Atomicity, Consistency, Isolation, Durability) properties.*/
+        session.persist(std1); /* create */
+        session.persist(laptop1);
+        // session.merge(std1); /*update */
+        Student std2=session.get(Student.class,2); /*read */
+        // session.remove(std2); /* delete */
+        transaction.commit();
+        
+        System.out.println(std2);
+        session.close();
+
+        sessionFactory.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+```
+
+`CRUD`
+
+```java
+session.persist(std1); /* create */
+session.merge(std1); /*update */
+Student std2=session.get(Student.class,2); /*read */
+session.remove(std2); /* delete */
+```
+

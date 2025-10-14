@@ -3,6 +3,7 @@ package practice_hibernate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 
@@ -15,7 +16,11 @@ public class Student {
     @Column(name="std_name")
     private String name;
     private int age;
+    @OneToOne
     private Laptop laptop;
+    // @ManyToOne
+    // private List<Laptop> laptops;
+
     
     public Laptop getLaptop() {
         return laptop;
@@ -23,6 +28,12 @@ public class Student {
     public void setLaptop(Laptop laptop) {
         this.laptop = laptop;
     }
+    // public List<Laptop> getLaptops() {
+    //     return laptops;
+    // }
+    // public void setLaptops(List<Laptop> laptops) {
+    //     this.laptops = laptops;
+    // }
     public int getRoll() {
         return roll;
     }
