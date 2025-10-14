@@ -166,3 +166,46 @@ Database (MySQL/PostgreSQL/H2)
 
 
 ### JDBC
+### Hibernate
+- Installation postgres using podman
+
+```bash
+podman run -it --name Postgress -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -p 5432:5432 postgres 
+```
+`Then` 
+
+```bash
+CTRL+C
+```
+
+```bash
+podman start Postgres
+podman exec -it Postgres bash
+```
+
+```bash
+psql -U user
+```
+
+```sql
+create database "Hibernate";
+```
+
+```sql
+\l
+```
+
+
+`Hibernate hibernate.cfg.xml`
+
+```xml
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Connection Settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/HIBERNATE</property>
+        <property name="hibernate.connection.username">user</property>
+        <property name="hibernate.connection.password">password</property>
+    </session-factory>
+</hibernate-configuration>
+```
