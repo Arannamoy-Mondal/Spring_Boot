@@ -1,5 +1,8 @@
 package practice_hibernate;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Laptop {
     private String brand;
     private String model;

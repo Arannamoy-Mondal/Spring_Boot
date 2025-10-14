@@ -1,6 +1,9 @@
 package practice_hibernate;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 
 @Entity
@@ -12,6 +15,14 @@ public class Student {
     @Column(name="std_name")
     private String name;
     private int age;
+    private Laptop laptop;
+    
+    public Laptop getLaptop() {
+        return laptop;
+    }
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
+    }
     public int getRoll() {
         return roll;
     }

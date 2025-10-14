@@ -16,9 +16,14 @@ public class Practive_Hibernate {
 
     public static void main(String[] args) {
         Student std1 = new Student();
-        std1.setRoll(3);
-        std1.setName("User Three");
+        std1.setRoll(4);
+        std1.setName("User Four");
         std1.setAge(23);
+        Laptop laptop1=new Laptop();
+        laptop1.setBrand("Lenovo");
+        laptop1.setModel("LOQ 13");
+        laptop1.setRam(16);
+        std1.setLaptop(laptop1);
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Student.class);
         configuration.configure();
