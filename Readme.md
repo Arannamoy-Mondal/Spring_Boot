@@ -1,3 +1,11 @@
+- Table of contents
+- [Project Object Model](#pom-project-object-model)
+- [Select JRE version](#select-jre-version)
+- [Maven Installation](#maven-installation-for-apt-package-manager)
+- [Server run command for linux](#server-run-command-for-linux)
+- [JDBC](#jdbc)
+- [Hibernate](#hibernate)
+
 ### POM (Project Object Model)
 
 
@@ -8,7 +16,13 @@ sudo apt install openjdk-17-jdk -y
 sudo update-alternatives --config java
 ```
 
-### Run command for linux:
+### Maven installation for apt package manager
+
+```bash
+sudo apt install maven
+```
+
+### Server run command for linux
 
 ```bash
 mvn clean && mvn package && mvn spring-boot:run
