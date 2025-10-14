@@ -186,11 +186,7 @@ Database (MySQL/PostgreSQL/H2)
 ```bash
 podman run -it --name Postgress -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -p 5432:5432 postgres 
 ```
-`Then` 
-
-```bash
-CTRL+C
-```
+`Then Press CTRL+C`
 
 ```bash
 podman start Postgres
