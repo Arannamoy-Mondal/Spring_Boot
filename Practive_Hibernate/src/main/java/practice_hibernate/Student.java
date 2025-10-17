@@ -1,9 +1,11 @@
 package practice_hibernate;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 
@@ -16,24 +18,17 @@ public class Student {
     @Column(name="std_name")
     private String name;
     private int age;
-    @OneToOne
-    private Laptop laptop;
-    // @ManyToOne
-    // private List<Laptop> laptops;
-
+    // @OneToOne
+    // private Laptop laptop;
+    @ManyToMany
+    private List<Laptop> laptops;
     
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
-    // public List<Laptop> getLaptops() {
-    //     return laptops;
-    // }
-    // public void setLaptops(List<Laptop> laptops) {
-    //     this.laptops = laptops;
-    // }
     public int getRoll() {
         return roll;
     }
