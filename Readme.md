@@ -277,3 +277,8 @@ Student std2=session.get(Student.class,2); /*read */
 session.remove(std2); /* delete */
 ```
 
+## Different Between fetch=FetchType.EAGER vs LAZY
+বৈশিষ্ট্য,FetchType.EAGER,FetchType.LAZY
+ডেটা লোডিং,মূল এন্টিটির সাথে একইসাথে,ডেটা যখন প্রয়োজন তখন
+পারফরম্যান্স,"ছোট ডেটাসেটের জন্য ভালো, কিন্তু বড় ডেটাসেটে খারাপ","মেমরি-দক্ষ, কিন্তু N+1 সমস্যা বা LazyInitializationException হতে পারে"
+ব্যবহারের পরামর্শ,শুধুমাত্র সেই সম্পর্কের জন্য ব্যবহার করুন যা আপনি প্রায় সবসময়ই প্রয়োজন মনে করেন।,সাধারণত ডিফল্ট হিসেবে এটিই ব্যবহার করা উচিত এবং প্রয়োজন অনুযায়ী JOIN FETCH বা এন্টটি গ্রাফ (Entity Graph) ব্যবহার করে ওভাররাইড করা উচিত।

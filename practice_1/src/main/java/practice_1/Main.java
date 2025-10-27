@@ -17,6 +17,7 @@ public class Main {
         Student std1 = new Student();
         std1.setName("User One");
         std1.setAge(23);
+        std1.setId(1);
         std1.setLaptop(Arrays.asList(l1));
         Configuration cfg = new Configuration().addAnnotatedClass(Laptop.class).addAnnotatedClass(Student.class)
                 .configure();
@@ -26,8 +27,8 @@ public class Main {
         // session.persist(l1);
         // session.merge(l1);
         // session.persist(std1);
-        session.merge(std1);
-        Laptop result=session.find(Laptop.class,2);
+        // session.merge(std1);
+        Student result=session.find(Student.class,1);
         System.out.println("Result: "+result);
         transaction.commit();
         sf.close();

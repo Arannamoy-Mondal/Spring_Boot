@@ -3,6 +3,7 @@ package practice_1;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
@@ -13,8 +14,15 @@ public class Student {
     public int id;
     public String name;
     public int age;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     public List<Laptop> Laptop;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
