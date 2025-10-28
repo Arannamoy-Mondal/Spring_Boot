@@ -6,6 +6,15 @@
 - [JDBC](#jdbc)
 - [Hibernate](#hibernate)
 
+
+### Keywords-
+
+- POJO -> Plain Old Java Object
+- AOP -> Aspect Oriented Programming
+- POM -> Project Obejct Model
+- IoC -> Inversion of Control  
+- DI -> Dependency Injection
+
 ### POM (Project Object Model)
 
 
