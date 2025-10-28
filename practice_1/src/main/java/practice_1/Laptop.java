@@ -1,9 +1,11 @@
 package practice_1;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
+@Cacheable
 public class Laptop {
     @Id
     public int id;

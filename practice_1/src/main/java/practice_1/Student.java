@@ -2,6 +2,7 @@ package practice_1;
 
 import java.util.List;
 
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -9,6 +10,7 @@ import jakarta.persistence.ManyToMany;
 
 
 @Entity
+@Cacheable
 public class Student {
     @Id
     public int id;

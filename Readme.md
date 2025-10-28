@@ -278,7 +278,42 @@ session.remove(std2); /* delete */
 ```
 
 ## Different Between fetch=FetchType.EAGER vs LAZY
-বৈশিষ্ট্য,FetchType.EAGER,FetchType.LAZY
-ডেটা লোডিং,মূল এন্টিটির সাথে একইসাথে,ডেটা যখন প্রয়োজন তখন
-পারফরম্যান্স,"ছোট ডেটাসেটের জন্য ভালো, কিন্তু বড় ডেটাসেটে খারাপ","মেমরি-দক্ষ, কিন্তু N+1 সমস্যা বা LazyInitializationException হতে পারে"
-ব্যবহারের পরামর্শ,শুধুমাত্র সেই সম্পর্কের জন্য ব্যবহার করুন যা আপনি প্রায় সবসময়ই প্রয়োজন মনে করেন।,সাধারণত ডিফল্ট হিসেবে এটিই ব্যবহার করা উচিত এবং প্রয়োজন অনুযায়ী JOIN FETCH বা এন্টটি গ্রাফ (Entity Graph) ব্যবহার করে ওভাররাইড করা উচিত।
+| Feature | `@ManyToMany(fetch = FetchType.EAGER)` | `@ManyToMany(fetch = FetchType.LAZY)` |
+| :--- | :--- | :--- |
+| **When Data Loads** | **Immediately** with the parent entity. | **On-demand** (only when the getter method is called). |
+| **Database Queries** | Usually **one or more JOINs** in a single database round trip. | A **separate SELECT** query runs for the related data upon access. |
+| **Performance Impact** | Good for small collections. **Poor performance** for large collections (risk of memory bloat). | **Memory efficient**. Risk of **N+1 queries** or `LazyInitializationException`. |
+| **Session Dependency** | **No** dependency. Data is available even if the session is closed. | **Requires an active session** when accessing the data. Session closure before access causes an exception. |
+| **Best Practice** | Use only for relationships you **must** have available immediately. | **Recommended default** for collections. Use `JOIN FETCH` or Entity Graphs to selectively eager-load when required. |
+
+
+
+
+## HQL:
+
+```java
+Query query=session.createQuery("from Laptop where id=1",Laptop.class);
+List<Laptop> result=query.getResultList();
+System.out.println(result);
+```
+
+```java
+String cpu="Ryzen 5 5625U";
+        Query query=session.createQuery("from Laptop where cpu like ?1",Laptop.class); 
+        query.setParameter(1, cpu);
+        List<Laptop> result=query.getResultList();
+        System.out.println(result);
+/*The code performs the following actions:
+
+1. Sets a parameter: Defines the CPU value to search for as "Ryzen 5 5625U".
+
+2. Creates a Typed Query: Initializes a generic Query<Laptop> object using the HQL from Laptop where cpu like ?1 and specifies Laptop.class to ensure the results are correctly typed.
+
+3. Binds the Parameter: Replaces the positional placeholder ?1 with the Java variable cpu's value, which is essential for security (SQL Injection prevention).
+
+4. Executes and Retrieves: Executes the query using getResultList() and converts the matching database records into a List<Laptop> of Java objects.
+
+5. Prints: Outputs the list of retrieved Laptop objects to the console.*/
+```
+
+

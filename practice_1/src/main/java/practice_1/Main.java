@@ -1,11 +1,13 @@
 package practice_1;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,14 +25,20 @@ public class Main {
                 .configure();
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
-        Transaction transaction = session.beginTransaction();
+        // Transaction transaction = session.beginTransaction();
         // session.persist(l1);
         // session.merge(l1);
         // session.persist(std1);
         // session.merge(std1);
         Student result=session.find(Student.class,1);
-        System.out.println("Result: "+result);
-        transaction.commit();
-        sf.close();
+        // System.out.println("Result: "+result);
+        // String cpu="Ryzen 5 5625U";
+        // Query query=session.createQuery("from Laptop where cpu like ?1",Laptop.class); 
+        // query.setParameter(1, cpu);
+        // List<Laptop> result=query.getResultList();
+        System.out.println(result);
+        // session.p
+        // transaction.commit();
+        // sf.close();
     }
 }
