@@ -10,6 +10,6 @@ public class Hello {
     @GetMapping("/")
     public String hello(){
         System.out.println("Hello");
-        return "Hello";
+        return "Hello.jsp";
     }
 }

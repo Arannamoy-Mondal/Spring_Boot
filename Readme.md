@@ -331,3 +331,8 @@ String cpu="Ryzen 5 5625U";
 
 ## IoC Principle and DI: Inversion of Control and Dependency Injection
 
+## JSP
+
+```bash
+Create war packaging. -> mvn clean package -> java -jar target\filename.jar
+```
