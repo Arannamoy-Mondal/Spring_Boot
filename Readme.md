@@ -16,6 +16,7 @@
 - POM -> Project Obejct Model
 - IoC -> Inversion of Control  
 - DI -> Dependency Injection
+- JSP -> Java Server Pages
 
 ### POM (Project Object Model)
 
