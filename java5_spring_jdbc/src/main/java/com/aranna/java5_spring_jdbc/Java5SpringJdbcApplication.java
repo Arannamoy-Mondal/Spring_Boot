@@ -15,9 +15,9 @@ public class Java5SpringJdbcApplication {
 	public static void main(String[] args) {
 		ApplicationContext context=SpringApplication.run(Java5SpringJdbcApplication.class, args);
 		Student std=context.getBean(Student.class);
-		std.setAge(20);
-		std.setName("Student One");
-		std.setId(1);
+		std.setAge(22);
+		std.setName("Student Three");
+		std.setId(3);
 		StudentService stdS=context.getBean(StudentService.class);
 		stdS.addStudent(std);
 		List<Student> students=stdS.getStudents();

@@ -29,19 +29,19 @@ public class StudentRepository {
     }
 
     public List<Student> getStudents(){
-        // String sql="select * from student";
-        // RowMapper<Student> mapper=new RowMapper<Student>() {
-        //     @Override
-        //     public Student mapRow(ResultSet rs,int rowNum) throws SQLException{
-        //         Student std=new Student();
-        //         std.setId(rs.getInt("id"));
-        //         std.setName(rs.getString("name"));
-        //         std.setAge(rs.getInt("age"));
-        //         return std;
-        //     }
-        // };
-        // List<Student> students=jdbcTemplate.query(sql, mapper);
-        // return students;
-        return Arrays.asList();
+        String sql="select * from student";
+        RowMapper<Student> mapper=new RowMapper<Student>() {
+            @Override
+            public Student mapRow(ResultSet rs,int rowNum) throws SQLException{
+                Student std=new Student();
+                std.setId(rs.getInt("id"));
+                std.setName(rs.getString("name"));
+                std.setAge(rs.getInt("age"));
+                return std;
+            }
+        };
+        List<Student> students=jdbcTemplate.query(sql, mapper);
+        return students;
+        // return Arrays.asList();
     }
 }
