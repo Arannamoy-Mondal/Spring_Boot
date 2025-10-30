@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Hello {
 
-    @GetMapping("")
+    @GetMapping("/")
     public String hello(){
         System.out.println("hello method called.");
-        return "Hello.jsp";
+        return "hello.jsp";
     }
 }

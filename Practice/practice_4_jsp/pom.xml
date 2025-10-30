@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aranna</groupId>
-	<artifactId>practice_3_jsp</artifactId>
+	<artifactId>practice_4_jsp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>practice_3_jsp</name>
+	<name>practice_4_jsp</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>
@@ -53,10 +53,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Embedded Tomcat JSP support -->
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>11.0.13</version>
 		</dependency>
 	</dependencies>
 
