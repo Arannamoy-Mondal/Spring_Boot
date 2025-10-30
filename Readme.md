@@ -5,7 +5,7 @@
 - [Server run command for linux](#server-run-command-for-linux)
 - [JDBC](#jdbc)
 - [Hibernate](#hibernate)
-
+- [JSP set up in VS Code](#jsp)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
@@ -336,3 +336,8 @@ String cpu="Ryzen 5 5625U";
 ```bash
 Create war packaging. -> mvn clean package -> java -jar target\filename.jar
 ```
+
+
+# jsp
+
+<a href="https://www.youtube.com/watch?v=G9HUmFd_t6I">Spring Boot With JSP ( JavaServer Pages )</a>
