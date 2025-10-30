@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aranna</groupId>
-	<artifactId>java7_jsp</artifactId>
+	<artifactId>java8_model_and_view</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>java7_jsp</name>
+	<name>java8_model_and_view</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>
@@ -54,11 +54,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		 <!-- Embedded Tomcat JSP support -->
-    <dependency>
-        <groupId>org.apache.tomcat.embed</groupId>
-        <artifactId>tomcat-embed-jasper</artifactId>
-    </dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
