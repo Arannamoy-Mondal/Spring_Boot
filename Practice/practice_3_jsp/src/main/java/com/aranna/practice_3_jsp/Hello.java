@@ -1,0 +1,13 @@
+package com.aranna.practice_3_jsp;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class Hello {
+    @GetMapping("/")
+    public String hello(){
+        System.out.println("hello method called");
+        return "Hello.jsp";
+    }
+}
