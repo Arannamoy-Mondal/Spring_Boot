@@ -1,4 +1,4 @@
-package com.aranna.java10_spring_mvc_without_spring_boot.main;
+package com.aranna.java10_spring_mvc_without_spring_boot;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
