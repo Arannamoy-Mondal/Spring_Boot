@@ -220,7 +220,9 @@ create database "Hibernate";
 ```sql
 \c dbName # Switch between multiple db
 ```
-
+```sql
+\dt # show table 
+```
 
 `Hibernate hibernate.cfg.xml`
 
