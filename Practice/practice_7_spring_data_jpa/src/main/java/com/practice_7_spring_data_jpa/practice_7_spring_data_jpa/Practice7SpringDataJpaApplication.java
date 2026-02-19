@@ -20,6 +20,7 @@ public class Practice7SpringDataJpaApplication {
 		Optional<Student> std2=repo.findById(2);	
 		System.out.println(repo.findAll());
 		System.out.println(repo.findById(1));
+		System.out.println(repo.findByName("Practice 71"));
 		System.out.println(std2);
 	}
 
