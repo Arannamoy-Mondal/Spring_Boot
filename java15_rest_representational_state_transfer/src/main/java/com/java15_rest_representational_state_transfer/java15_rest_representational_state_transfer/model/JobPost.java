@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class JobPost {
     private int PostId;
     private String postProfile;
-    private String poStringDesc;
+    private String postDesc;
     private Integer reqExperience;
     private List<String> postTechStack;
 }
