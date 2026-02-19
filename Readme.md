@@ -6,7 +6,7 @@
 - [JDBC](#jdbc)
 - [Hibernate](#hibernate)
 - [JSP set up in VS Code](#jsp)
-
+- []()
 >> sudo lsof -i :8000 && kill -9 PID
  
 ### Keywords-
@@ -341,3 +341,12 @@ Create war packaging. -> mvn clean package -> java -jar target\filename.jar
 # jsp
 
 <a href="https://www.youtube.com/watch?v=G9HUmFd_t6I">Spring Boot With JSP ( JavaServer Pages )</a>
+
+# Step by step development flow in Spring Boot
+
+```mermaid
+graph LR;
+A[Model]-->B[Repository]
+B[Repository]-->C[Service]
+C[Service]-->D[Controller]
+```
