@@ -1,6 +1,7 @@
 package com.java15_rest_representational_state_transfer.java15_rest_representational_state_transfer.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,16 +45,15 @@ public class JobController {
 
     @GetMapping("/api/v1/job")
     @ResponseBody
-    public JobPost getJob(@RequestParam int postId) {
+    public Optional<JobPost> getJob(@RequestParam int postId) {
         System.out.println(postId);
         return jobService.getJobRepo(postId);
     }
 
     @PostMapping("/api/v1/job")
-    public JobPost postJob(@RequestBody JobPost jobPost) {
+    public String postJob(@RequestBody JobPost jobPost) {
         System.out.println(jobPost);
-        jobService.addJob(jobPost);
-        return jobService.getJobRepo(jobPost.getPostId());
+        return jobService.addJob(jobPost);
     }
     @PutMapping("/api/v1/job")
     public JobPost updateJob(@RequestBody JobPost jobPost) {
@@ -62,14 +62,20 @@ public class JobController {
     }
 
     @DeleteMapping("/api/v1/job/{postId}")
-    public JobPost deleJobPost(@PathVariable int postId){
+    public String deleJobPost(@PathVariable int postId){
         return jobService.delJobPost(postId);
     }
 
 
-    @GetMapping(path="/api/v1/jobs/json",produces = "application/json")
+    @GetMapping("/api/v1/jobs/json")
     public List<JobPost> content_negotiation(){
         return jobService.getJobRepos();
+    }
+    
+
+    @GetMapping("/api/v1/jobs/load")
+    public String load() {
+        return jobService.load();
     }
     
 }

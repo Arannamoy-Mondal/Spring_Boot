@@ -3,13 +3,20 @@ package com.java15_rest_representational_state_transfer.java15_rest_representati
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.java15_rest_representational_state_transfer.java15_rest_representational_state_transfer.model.JobPost;
 
 @Repository
-public class JobRepo {
-    List<JobPost> jobPosts = new ArrayList<>();
+public interface JobRepo extends JpaRepository<JobPost,Integer> {
+
+    
+} 
+
+
+/*
+ List<JobPost> jobPosts = new ArrayList<>();
 
     public List<JobPost> getJobPosts() {
         return jobPosts;
@@ -116,4 +123,5 @@ public class JobRepo {
                 "Go, Fiber, Gin, High Concurrency APIs, ML Model Integration", 2, List.of("Go", "Fiber", "Gin", "ML")));
 
     }
-}
+
+*/
