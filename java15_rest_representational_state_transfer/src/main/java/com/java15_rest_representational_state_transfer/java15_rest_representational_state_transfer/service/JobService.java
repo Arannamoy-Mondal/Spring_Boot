@@ -99,4 +99,8 @@ public class JobService {
         return "Successfully loaded";
     }
 
+    public List<JobPost> search(String keyword) {
+        return jobRepo.findByPostProfileContainingOrPostDescContaining(keyword,keyword);
+    }
+
 }

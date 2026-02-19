@@ -78,4 +78,11 @@ public class JobController {
         return jobService.load();
     }
     
+
+    @GetMapping("/api/v1/search_by_key_word/{keyword}")
+    public List<JobPost> getMethodName(@PathVariable("keyword") String keyword) {
+        return jobService.search(keyword);
+        // return new String();
+    }
+    
 }
