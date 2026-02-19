@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Component
 public class JobPost {
-    private int PostId;
+    private int postId;
     private String postProfile;
     private String postDesc;
     private Integer reqExperience;
     private List<String> postTechStack;
 }
+
