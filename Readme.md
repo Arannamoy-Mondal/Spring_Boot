@@ -222,6 +222,9 @@ create database "Hibernate";
 ```
 ```sql
 \dt # show table 
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public';
 ```
 
 `Hibernate hibernate.cfg.xml`
