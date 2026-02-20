@@ -34,15 +34,15 @@ public class ProductModel {
     private String description;
     @NotBlank(message = "Brand Name")
     private String brand;
-    @NotBlank(message = "Price ")
+  
     private BigDecimal price;
     @NotBlank(message = "Category")
     private String category;
-    @NotBlank(message = "Release Date")
+    
     private Date releaseDate;
-    @NotBlank(message = "Product Available")
+
     private boolean productAvailable;
-    @NotBlank(message = "Stock Quantity")
+    
     private int stockQuantity;
     
 }

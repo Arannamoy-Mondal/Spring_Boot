@@ -27,20 +27,36 @@ public class ProductService {
         return true;
     }
 
+
+    public ProductModel findById(int productId){
+        return productRepository.findById(productId).orElse(null);
+    }
+
+
     public String loadProduct(){
         List<ProductModel> products=new ArrayList<>();
         System.out.println(productRepository.findById(10001));
     // 1. GPU
     products.add(ProductModel.builder()
-        .name("ROG Astral RTX 5090").description("Flagship 32GB VRAM GPU").brand("NVIDIA")
-        .price(new BigDecimal("250000.00")).category("Electronics")
-        .releaseDate(getDateTime(2025, 1, 30)).productAvailable(true).stockQuantity(50).build());
+        .name("ROG Astral RTX 5090")
+        .description("Flagship 32GB VRAM GPU")
+        .brand("NVIDIA")
+        .price(new BigDecimal("250000.00"))
+        .category("Electronics")
+        .releaseDate(getDateTime(2025, 1, 30))
+        .productAvailable(true)
+        .stockQuantity(50).build());
 
     // 2. CPU
     products.add(ProductModel.builder()
-        .name("Core i9-14900K").description("24-Core Unlocked Desktop Processor").brand("Intel")
-        .price(new BigDecimal("65000.00")).category("Electronics")
-        .releaseDate(getDateTime(2023, 10, 17)).productAvailable(true).stockQuantity(120).build());
+        .name("Core i9-14900K")
+        .description("24-Core Unlocked Desktop Processor")
+        .brand("Intel")
+        .price(new BigDecimal("65000.00"))
+        .category("Electronics")
+        .releaseDate(getDateTime(2023, 10, 17))
+        .productAvailable(true)
+        .stockQuantity(120).build());
 
     // 3. Laptop
     products.add(ProductModel.builder()
