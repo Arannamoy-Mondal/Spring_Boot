@@ -6,7 +6,7 @@
 - [JDBC](#jdbc)
 - [Hibernate](#hibernate)
 - [JSP set up in VS Code](#jsp)
-- []()
+- [step by step development flow spring-boot](#step-by-step-development-flow-in-spring-boot)
 >> sudo lsof -i :8000 && kill -9 PID
  
 ### Keywords-
@@ -355,3 +355,13 @@ A[Model]-->B[Repository]
 B[Repository]-->C[Service]
 C[Service]-->D[Controller]
 ```
+
+# Status Code
+
+|Status Code|Description|
+|-----------|-----------|
+|404|Not Found|
+|401|Unauthorized|
+|405|Method Not Allowed|
+|200|Ok|
+|202|Accepted|
