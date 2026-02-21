@@ -6,6 +6,8 @@ import java.util.Date;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tools.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 
 @Data
 @Entity
@@ -38,7 +42,7 @@ public class ProductModel {
     private BigDecimal price;
     @NotBlank(message = "Category")
     private String category;
-    
+    @JsonFormat(shape=JsonFormatTypes.STRING,pattern = "dd-MM-yyyy")
     private Date releaseDate;
 
     private boolean productAvailable;
