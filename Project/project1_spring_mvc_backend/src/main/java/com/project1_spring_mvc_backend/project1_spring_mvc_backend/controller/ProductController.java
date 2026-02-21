@@ -97,6 +97,13 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(@PathVariable("productId") int productId){
         return productService.deleteProduct(productId);
     }
+
+
+    @GetMapping("/search/{keyWord}")
+    public ResponseEntity<?> searchProduct(@PathVariable("keyWord") String keyWord){
+        return productService.searchProduct(keyWord);
+    }
+
 }
 
 /*
