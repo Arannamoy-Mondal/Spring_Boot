@@ -7,6 +7,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,8 +18,14 @@ import com.project1_spring_mvc_backend.project1_spring_mvc_backend.repository.Pr
 
 @Service
 public class ProductService {
+
+    private final ProductModel productModel;
     @Autowired
     public ProductRepository productRepository;
+
+    ProductService(ProductModel productModel) {
+        this.productModel = productModel;
+    }
 
     public List<ProductModel> getAllProducts() {
         return productRepository.findAll();
@@ -117,4 +126,50 @@ public class ProductService {
         return calendar.getTime();
 
     }
+
+    public ResponseEntity<?> updateProduct(int productId, ProductModel newProductModel, MultipartFile imageFile) {
+        try {
+            
+            ProductModel previousProduct=productRepository.findById(productId).orElse(null);
+            System.out.println(productModel);
+            System.out.println(previousProduct);
+        if (previousProduct!=null){
+            if(newProductModel.getName()!=null){
+                previousProduct.setName(newProductModel.getName());
+            }
+            if(newProductModel.getBrand()!=null){
+                previousProduct.setBrand(newProductModel.getBrand());
+            }
+            if(newProductModel.getCategory()!=null){
+                previousProduct.setCategory(newProductModel.getCategory());;
+            }
+            if(newProductModel.getDescription()!=null){
+                previousProduct.setDescription(newProductModel.getDescription());;
+            }
+            if(imageFile!=null){
+                previousProduct.setImageData(imageFile.getBytes());;
+            }
+            if(newProductModel.getImageName()!=null){
+                previousProduct.setImageName(newProductModel.getImageName());;
+            }
+            if(newProductModel.getImageType()!=null){
+                previousProduct.setImageType(newProductModel.getImageType());;
+            }
+            if(newProductModel.getPrice()!=null){
+                previousProduct.setPrice(newProductModel.getPrice());
+            }
+            if(newProductModel.getReleaseDate()!=null){
+                previousProduct.setReleaseDate(newProductModel.getReleaseDate());;
+            }
+            if(newProductModel.getStockQuantity()!=0){
+                previousProduct.setStockQuantity(newProductModel.getStockQuantity());;
+            }
+            productRepository.save(previousProduct);
+        }
+    return ResponseEntity.status(HttpStatus.OK).body(previousProduct);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+    
 }
