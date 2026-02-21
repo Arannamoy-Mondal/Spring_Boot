@@ -171,5 +171,16 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    public ResponseEntity<?> deleteProduct(int productId) {
+       ProductModel product=productRepository.findById(productId).orElse(null);
+       if (product!=null){
+        productRepository.delete(product);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Product Successfully Deleted.");
+       }
+       else{
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Operation Failed.");
+       }
+    }
     
 }
