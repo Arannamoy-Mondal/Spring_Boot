@@ -184,7 +184,7 @@ public class ProductService {
        }
     }
     
-    @Transactional(readOnly = true)
+    // @Transactional(readOnly = true) ( Do not need, if spring.datasource.hikari.auto-commit=false)
     public ResponseEntity<?> searchProduct(String keyWord){
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.searchProduct(keyWord));
     }
