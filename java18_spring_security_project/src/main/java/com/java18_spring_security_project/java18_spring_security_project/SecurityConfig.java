@@ -6,6 +6,12 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -19,5 +25,21 @@ public class SecurityConfig {
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return httpSecurity.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        UserDetails user1= User
+        .withUsername("null one")
+        .password(encoder.encode("123"))
+        .roles("admin")
+        .build();
+        UserDetails user2= User
+        .withUsername("null two")
+        .password(encoder.encode("123"))
+        .roles("admin")
+        .build();
+        return new InMemoryUserDetailsManager(user1,user2);
     }
 }
