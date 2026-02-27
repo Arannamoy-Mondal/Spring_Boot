@@ -40,6 +40,12 @@ sudo apt install maven
 mvn clean && mvn package && mvn spring-boot:run
 ```
 
+### For multiple instances by port changing
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
+```
+
 ### API's:
 - 1. localhost:8000/hello
 
