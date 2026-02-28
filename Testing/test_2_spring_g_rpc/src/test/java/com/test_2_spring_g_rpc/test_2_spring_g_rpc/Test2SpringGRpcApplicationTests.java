@@ -1,10 +1,10 @@
-package com.test_3_spring_grpc.test_3_spring_grpc;
+package com.test_2_spring_g_rpc.test_2_spring_g_rpc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Test3SpringGrpcApplicationTests {
+class Test2SpringGRpcApplicationTests {
 
 	@Test
 	void contextLoads() {

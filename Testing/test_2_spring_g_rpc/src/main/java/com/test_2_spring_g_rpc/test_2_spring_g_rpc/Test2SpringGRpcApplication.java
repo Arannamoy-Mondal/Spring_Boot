@@ -1,13 +1,13 @@
-package com.test_3_spring_grpc.test_3_spring_grpc;
+package com.test_2_spring_g_rpc.test_2_spring_g_rpc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Test3SpringGrpcApplication {
+public class Test2SpringGRpcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Test3SpringGrpcApplication.class, args);
+		SpringApplication.run(Test2SpringGRpcApplication.class, args);
 	}
 
 }
