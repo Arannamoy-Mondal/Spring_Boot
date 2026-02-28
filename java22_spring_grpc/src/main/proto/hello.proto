@@ -1,0 +1,12 @@
+syntax="proto3";
+
+package java22_spring_grpc;
+
+option java_package="com.java22_spring_grpc";
+option java_multiple_files=true;
+option java_outer_classname="HelloOuter";
+
+
+message Hello{
+    string id=1;
+}
