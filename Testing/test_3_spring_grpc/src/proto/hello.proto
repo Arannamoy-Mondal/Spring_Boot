@@ -1,0 +1,5 @@
+syntax="proto3";
+option java-multiple-files="true";
+message hello{
+
+}
