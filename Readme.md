@@ -428,3 +428,10 @@ C[Service]-->D[Controller]
 | 508 | Loop Detected |
 | 510 | Not Extended |
 | 511 | Network Authentication Required |
+
+
+# Install protobuf-compiler for gRPC
+
+```bash
+sudo apt install protobuf-compiler
+``` 
