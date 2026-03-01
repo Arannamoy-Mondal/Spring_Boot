@@ -439,3 +439,30 @@ sudo apt install protobuf-compiler
 
 # gRPC Successfully Tested Using Default Configuration Of Spring Starter
 <img src="./Images/gRPC Successfully Tested Using Default Configuration Of Spring Starter.png">
+
+
+# POM configuration for netty Or use Spring Reactive Web from Spring Initializer 
+
+```xml
+<!-- netty conf start -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-reactor-netty</artifactId>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency> -->
+		<!-- netty conf end -->
+```
