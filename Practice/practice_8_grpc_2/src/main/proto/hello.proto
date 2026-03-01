@@ -5,4 +5,4 @@ option java_outer_classname="HelloOuterPractice";
 option java_package="com.practice_8_grpc_2";
 
 
-message 
+message

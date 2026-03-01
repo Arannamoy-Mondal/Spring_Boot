@@ -7,6 +7,7 @@
 - [Hibernate](#hibernate)
 - [JSP set up in VS Code](#jsp)
 - [step by step development flow spring-boot](#step-by-step-development-flow-in-spring-boot)
+- [Standardization of Ports](#standardization-of-ports)
 >> sudo lsof -i :8000 && kill -9 PID
  
 ### Keywords-
@@ -465,4 +466,36 @@ sudo apt install protobuf-compiler
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency> -->
 		<!-- netty conf end -->
+```
+
+
+# Standardization of Ports
+
+```
+1. Limits Microservice
+Ports: 8080, 8081, etc.
+
+2. Spring Cloud Config Server
+Port: 8888
+
+3. Currency Exchange Microservice
+Ports: 8000, 8001, 8002, etc.
+
+4. Currency Conversion Microservice
+Ports: 8100, 8101, 8102, etc.
+
+5. Netflix Eureka Naming Server
+Port: 8761
+
+6. API Gateway
+Port: 8765
+
+7. Zipkin Distributed Tracing Server
+Port: 9411
+```
+
+# Run multiple instance
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8001"
 ```
