@@ -1,0 +1,61 @@
+syntax="proto3";
+
+package com.java22_spring_g_rpc;
+
+option java_multiple_files=true;
+option java_package="com.java22_spring_g_rpc";
+option java_outer_classname="IntroOuterClass";
+
+enum BodyStyle{
+  UNKNOW=0;
+  SEDAN=1;
+  COUPE=2;
+  SUV=3;
+}
+
+message Address{
+  string street=1;
+  string city=2;
+  string state=3;
+}
+
+
+message Student{
+  string name=1;
+  Address address=2;
+}
+
+message School{
+  int32 id=1;
+  string name=2;
+  Address address=3;
+}
+
+
+message Book{
+  string title=1;
+  string author=2;
+  int32 publication_year=3;
+}
+
+
+
+message Library{
+  string name=1;
+  repeated Book books=2; // array
+}
+
+
+message Car{
+  string vendor=1;
+  string model=2;
+  int32 year=3;
+  BodyStyle bodyStyle=4;
+}
+
+
+message CarDealer{
+  map<int32,Car> inventory=1; // map
+}
+
+

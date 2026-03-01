@@ -8,10 +8,10 @@
 		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.java22_spring_grpc</groupId>
-	<artifactId>java22_spring_grpc</artifactId>
+	<groupId>com.java22_spring_g_rpc</groupId>
+	<artifactId>java22_spring_g_rpc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>java22_spring_grpc</name>
+	<name>java22_spring_g_rpc</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
