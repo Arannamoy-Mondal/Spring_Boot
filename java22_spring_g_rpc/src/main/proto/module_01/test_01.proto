@@ -1,0 +1,11 @@
+syntax="proto3";
+
+package module_01;
+
+option java_package="com.java22_spring_g_rpc";
+option java_outer_classname="TestOuterClass";
+option java_multiple_files=true;
+
+message Empty{
+  bool empty=1;
+}

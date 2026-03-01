@@ -1,17 +1,22 @@
 package com.java22_spring_g_rpc.java22_spring_g_rpc.Intro;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import com.java22_spring_g_rpc.Address;
 import com.java22_spring_g_rpc.BodyStyle;
 import com.java22_spring_g_rpc.Book;
 import com.java22_spring_g_rpc.Car;
 import com.java22_spring_g_rpc.CarDealer;
+import com.java22_spring_g_rpc.Credentials;
+import com.java22_spring_g_rpc.LastUpdated;
 import com.java22_spring_g_rpc.Library;
+import com.java22_spring_g_rpc.Phone;
 import com.java22_spring_g_rpc.School;
 import com.java22_spring_g_rpc.Student;
 
@@ -66,6 +71,11 @@ public class IntroController {
        .putInventory(car1.getYear(),car1)
        .putInventory(car2.getYear(), car2)
        .build();
+
+       var credentials_=Credentials.newBuilder()
+       .setPhone(Phone.newBuilder().setCode(1234).setNumber(1234567).build()).build();
+
+   
     LOGGER.info(student.toString());
     LOGGER.info(address.toString());
     LOGGER.info(school.toString());
@@ -77,5 +87,20 @@ public class IntroController {
     System.out.println(car1);
     System.out.println(car2);
     System.out.println("Car dealer: "+carDealer1);
+    login(credentials_);
+   
+    }
+
+    public static void login(Credentials credentials){
+      switch (credentials.getCredentialCase()) {
+         case EMAIL:
+            System.out.println(credentials.getEmail());
+            break;
+         case PHONE:
+            System.out.println(credentials.getPhone());
+            break;
+         default:
+            break;
+      }
     }
 }
