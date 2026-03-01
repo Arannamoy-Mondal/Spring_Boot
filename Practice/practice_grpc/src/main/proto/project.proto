@@ -1,0 +1,19 @@
+syntax="proto3";
+
+option java_multiple_files=true;
+option java_outer_classname="ProjectOuterClass";
+option java_package="com.practice_grpc";
+
+message BankAcNo{
+  int32 acc_no=1;
+}
+
+message BankAc{
+  int32 acc_no=1;
+  string ac_name=2;
+}
+
+
+service BankAcService{
+  rpc GetAcInfo(BankAcNo) returns(BankAc);
+}

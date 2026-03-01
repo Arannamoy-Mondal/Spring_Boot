@@ -9,7 +9,7 @@ import com.java22_spring_g_rpc.BankServiceGrpc.BankServiceImplBase;
 
 import io.grpc.stub.StreamObserver;
 
-@Service
+
 @GrpcService
 public class BankService extends BankServiceImplBase {
 
