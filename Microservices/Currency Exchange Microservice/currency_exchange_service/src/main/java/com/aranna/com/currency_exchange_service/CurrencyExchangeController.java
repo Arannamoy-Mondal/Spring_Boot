@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/currency-exchange/from")
+// @RequestMapping("/currency-exchange/from")
 public class CurrencyExchangeController {
     @Autowired
     private Environment environment;
@@ -25,16 +25,13 @@ public class CurrencyExchangeController {
 
     
 
-    @GetMapping("/{from}/to/{to}")
+    @GetMapping("/currency-exchange/from/{from}/to/{to}")
     public ResponseEntity<?> getMethodName(@PathVariable("from") String from, @PathVariable("to") String to) {
         CurrencyExchange currencyExchange = new CurrencyExchange(100L, from, to, BigDecimal.valueOf(15*10));
 
         String property = environment.getProperty("local.server.port");
         currencyExchange.setEnvironment(property);
-        if (currencyExchange == null) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
-        }
-        CurrencyExchange currencyExchange2 = currencyExchangeRepo.findByFromAndTo(from, to);
+        // CurrencyExchange currencyExchange2 = currencyExchangeRepo.findByFromAndTo(from, to);
         return ResponseEntity.status(HttpStatus.OK).body(
                 currencyExchange);
 
