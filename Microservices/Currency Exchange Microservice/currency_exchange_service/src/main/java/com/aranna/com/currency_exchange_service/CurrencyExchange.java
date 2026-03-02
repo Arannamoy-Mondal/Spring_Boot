@@ -2,9 +2,21 @@ package com.aranna.com.currency_exchange_service;
 
 import java.math.BigDecimal;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class CurrencyExchange {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name  = "currency_from")
     private String from;
+    @Column(name  = "currency_to")
     private String to;
     private BigDecimal conversionMultiple;
     private String environment;
