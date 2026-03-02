@@ -22,9 +22,12 @@ public class CurrencyExchangeController {
     @Autowired
     private CurrencyExchangeRepo currencyExchangeRepo;
 
+
+    
+
     @GetMapping("/{from}/to/{to}")
     public ResponseEntity<?> getMethodName(@PathVariable("from") String from, @PathVariable("to") String to) {
-        CurrencyExchange currencyExchange = new CurrencyExchange(100L, from, to, BigDecimal.valueOf(15));
+        CurrencyExchange currencyExchange = new CurrencyExchange(100L, from, to, BigDecimal.valueOf(15*10));
 
         String property = environment.getProperty("local.server.port");
         currencyExchange.setEnvironment(property);

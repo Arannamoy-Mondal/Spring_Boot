@@ -20,6 +20,7 @@ public class CurrencyExchange {
     private String to;
     private BigDecimal conversionMultiple;
     private String environment;
+    
     public CurrencyExchange(String environment) {
         this.environment = environment;
     }
