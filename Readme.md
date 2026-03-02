@@ -7,7 +7,11 @@
 - [Hibernate](#hibernate)
 - [JSP set up in VS Code](#jsp)
 - [step by step development flow spring-boot](#step-by-step-development-flow-in-spring-boot)
+- [POM configuration for netty Or use Spring Reactive Web from Spring Initializer](#pom-configuration-for-netty-or-use-spring-reactive-web-from-spring-initializer)
 - [Standardization of Ports](#standardization-of-ports)
+- [Run multiple java instance](#run-multiple-java-instance)
+
+
 >> sudo lsof -i :8000 && kill -9 PID
  
 ### Keywords-
@@ -494,7 +498,7 @@ Port: 8765
 Port: 9411
 ```
 
-# Run multiple instance
+# Run multiple java instance
 
 ```bash
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8001"
