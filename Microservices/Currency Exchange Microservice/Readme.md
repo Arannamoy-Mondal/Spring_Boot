@@ -9,3 +9,9 @@
 # - http://0.0.0.0:8765/CURRENCY-CONVERSION/currency-conversion/from/usd/to/inr/quantity/100
 
 # - http://0.0.0.0:8765/CURRENCY-EXCHANGE/currency-exchange/from/usd/to/inr
+
+
+
+# API Configuration
+
+# - http://0.0.0.0:8765/currency-exchange/from/usd/to/inr

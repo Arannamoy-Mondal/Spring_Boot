@@ -503,3 +503,9 @@ Port: 9411
 ```bash
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8001"
 ```
+
+# Fire a lot of request using cmd
+
+```bash
+watch -n 0.1 curl http://0.0.0.0:8001/sample-api # for every 0.1s
+```
