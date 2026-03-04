@@ -10,7 +10,8 @@
 - [POM configuration for netty Or use Spring Reactive Web from Spring Initializer](#pom-configuration-for-netty-or-use-spring-reactive-web-from-spring-initializer)
 - [Standardization of Ports](#standardization-of-ports)
 - [Run multiple java instance](#run-multiple-java-instance)
-
+- [JUnit](#junit-testing)
+- [Mockito](#mockito)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
@@ -58,15 +59,6 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
 
 ## 1️⃣ Presentation Layer (Controller Layer)
 
-* **কি কাজ করে:**
-  ইউজারের request handle করে এবং response return করে।
-* **কোনো UI framework** বা REST API এখানে বসে।
-* **Key Components:**
-
-  * `@Controller` (web pages জন্য)
-  * `@RestController` (REST API জন্য)
-  * `@RequestMapping`, `@GetMapping`, `@PostMapping` ইত্যাদি
-
 **Example:**
 
 ```java
@@ -81,10 +73,6 @@ public class UserController {
 ---
 
 ## 2️⃣ Service Layer (Business Logic Layer)
-
-* **কি কাজ করে:**
-  সমস্ত business logic handle করে। Controller শুধু service কে call করে।
-* **Key Components:**
 
   * `@Service`
   * `@Transactional`
@@ -102,7 +90,6 @@ public class UserService {
 
 ## 3️⃣ Data Access Layer (Repository Layer)
 
-* **কি কাজ করে:** Database operations handle করে।
 * **Key Components:**
 
   * `@Repository`
@@ -119,7 +106,6 @@ public interface UserRepository extends JpaRepository<User, Long> { }
 
 ## 4️⃣ Model Layer (Entity Layer)
 
-* **কি কাজ করে:** Database table represent করে।
 * **Key Components:**
 
   * `@Entity`
@@ -140,7 +126,6 @@ public class User {
 
 ## 5️⃣ Configuration Layer
 
-* **কি কাজ করে:** Spring Boot app setup ও configuration handle করে।
 * **Key Components:**
 
   * `@Configuration`
@@ -165,13 +150,13 @@ public class AppConfig {
 
 ### a) Security Layer
 
-* `Spring Security` দিয়ে authentication & authorization handle করা হয়।
-* `@EnableWebSecurity` + `WebSecurityConfigurerAdapter` ব্যবহার হয়।
+* `Spring Security` 
+* `@EnableWebSecurity` + `WebSecurityConfigurerAdapter` 
 
 ### b) Exception / Advice Layer
 
 * Global exception handling, response standardization।
-* `@ControllerAdvice` + `@ExceptionHandler` ব্যবহার হয়।
+* `@ControllerAdvice` + `@ExceptionHandler` 
 
 ---
 
@@ -195,10 +180,8 @@ Database (MySQL/PostgreSQL/H2)
 
 ---
 
-💡 **Tip:**
 
-* এই layered architecture Django এর **views → models → templates** এর মতো।
-* Spring Boot-এ আরও modular এবং Java ecosystem friendly, plus REST API, Microservices সহজে integrate করা যায়।
+
 
 
 
@@ -509,3 +492,12 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8001"
 ```bash
 watch -n 0.1 curl http://0.0.0.0:8001/sample-api # for every 0.1s
 ```
+
+
+# JUnit Testing
+- Create a class in default test folder.
+
+src -> test
+
+
+# Mockito
