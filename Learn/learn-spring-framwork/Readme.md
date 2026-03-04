@@ -1,0 +1,7 @@
+- Dependency:When one class needs another class to function (e.g., a Car needs an Engine).
+- Dependency Injection - DI: Instead of a class creating its own "needs," an external force provides them.
+- Inversion of Control - IoC: Shifting the control of creating and managing objects from the developer to the Spring framework.
+- IoC Container / ApplicationContext: The "box" or brain where Spring keeps, manages, and wires all your objects together.
+- ComponentScan: A command that tells Spring to "look around" your project folders to find classes to manage.
+- Spring Beans:Simply an object that is created and managed by the Spring IoC container.
+- Autowiring: Spring automatically connecting one bean into another bean that needs it
