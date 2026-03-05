@@ -521,3 +521,7 @@ src -> test
 ```bash
 DB_URL="jdbc:postgresql://localhost:5432/project_3_account_service_db" DB_USERNAME="postgres" DB_PASSWORD="password" mvn spring-boot:run
 ```
+
+# swagger ui
+- Dependency: Spring OpenAPI
+URL -> http://localhost:8080/swagger-ui/index.html

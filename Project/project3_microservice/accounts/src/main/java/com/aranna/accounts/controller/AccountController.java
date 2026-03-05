@@ -2,6 +2,7 @@ package com.aranna.accounts.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aranna.accounts.constants.AccountConstants;
 import com.aranna.accounts.dto.CustomerDto;
 import com.aranna.accounts.dto.ResponseDto;
 import com.aranna.accounts.model.Account;
@@ -36,7 +37,7 @@ public class AccountController {
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createAccount(@RequestBody CustomerDto customerDto){
         return ResponseEntity.status(HttpStatus.CREATED)
-        .body(new ResponseDto());
+        .body(new ResponseDto(AccountConstants.STATUS_201,AccountConstants.MESSAGE_201));
     }
 
 }
