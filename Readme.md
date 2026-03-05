@@ -29,9 +29,20 @@
 
 ### Select JRE version:
 
+`For Ubuntu`
 ```bash
 sudo apt install openjdk-17-jdk -y
+sudo apt install openjdk-21-jdk -y
+sudo apt install openjdk-25-jdk
 sudo update-alternatives --config java
+```
+
+`For Fedora`
+```bash
+sudo dnf install java-17-openjdk-devel
+sudo dnf install java-21-openjdk-devel -y
+sudo dnf install java-latest-openjdk-devel -y
+sudo alternatives --config java
 ```
 
 ### Maven installation for apt package manager
@@ -39,7 +50,10 @@ sudo update-alternatives --config java
 ```bash
 sudo apt install maven
 ```
-
+`For Fedora`
+```bash
+sudo dnf install maven -y
+```
 ### Server run command for linux
 
 ```bash
