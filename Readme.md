@@ -515,3 +515,9 @@ src -> test
 
 
 # Mockito
+
+# .env setup
+
+```bash
+DB_URL="jdbc:postgresql://localhost:5432/project_3_account_service_db" DB_USERNAME="postgres" DB_PASSWORD="password" mvn spring-boot:run
+```
