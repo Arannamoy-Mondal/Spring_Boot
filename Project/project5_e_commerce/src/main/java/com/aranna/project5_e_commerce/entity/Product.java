@@ -24,13 +24,13 @@ public class Product {
     private Long price;
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB") // বড় ইমেজের জন্য এটি নিরাপদ
+    @Column(columnDefinition = "LONGBLOB") 
     private byte[] image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productBrandId", referencedColumnName = "Id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "products"}) 
-    // ওপরের লাইনটি Infinite Recursion এবং Lazy Loading Error বন্ধ করবে
+   
     private Brand brand;
 
     @ManyToOne(fetch = FetchType.LAZY)

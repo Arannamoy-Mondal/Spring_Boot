@@ -1,4 +1,4 @@
-- Table of contents
+#### Table of contents
 - [Project Object Model](#pom-project-object-model)
 - [Select JRE version](#select-jre-version)
 - [Maven Installation](#maven-installation-for-apt-package-manager)
@@ -12,9 +12,15 @@
 - [Run multiple java instance](#run-multiple-java-instance)
 - [JUnit](#junit-testing)
 - [Mockito](#mockito)
+- [.env Setup](#env-setup)
+- [Swagger Ui](#swagger-ui)
+- [One To One](#one-to-one)
+- [One To Many / Many To One](#one-to-many--many-to-one)
+- [Many To Many](#many-to-many)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
+
 ### Keywords-
 
 - POJO -> Plain Old Java Object
@@ -525,3 +531,196 @@ DB_URL="jdbc:postgresql://localhost:5432/project_3_account_service_db" DB_USERNA
 # swagger ui
 - Dependency: Spring OpenAPI
 URL -> http://localhost:8080/swagger-ui/index.html
+
+- [Table of contents](#table-of-contents)
+# One To One 
+
+```java
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@Builder
+public class Passport{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime addedTime;
+    private String country;
+    @OneToOne(mappedBy = "passport")
+    @JsonBackReference
+    private User user;
+}
+```
+
+```java
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "\"user\"")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name="user_role",
+        joinColumns = @JoinColumn(name="user_id"),
+        inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    @JsonManagedReference
+    private Set<Role> roles;
+
+    // mappedBy here refers to the 'user' variable of the 'passport' class
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_passport")
+    @JsonManagedReference
+    private Passport passport;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_vehicle")
+    @JsonManagedReference
+    private Vehicle vehicle;
+}
+
+```
+- [Table of contents](#table-of-contents)
+# One To Many / Many To One
+
+```java
+@Entity
+@Data
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@AllArgsConstructor
+@NoArgsConstructor
+public class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String model;
+    @Enumerated(EnumType.STRING)
+    private com.aranna.java13_spring_jpa.constant.Vehicle vehicleType;
+    @OneToMany(mappedBy = "vehicle")
+    @JsonBackReference
+    private List<User> users;
+}
+
+```
+```java
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "\"user\"")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name="user_role",
+        joinColumns = @JoinColumn(name="user_id"),
+        inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    @JsonManagedReference
+    private Set<Role> roles;
+
+    // mappedBy here refers to the 'user' variable of the 'passport' class
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_passport")
+    @JsonManagedReference
+    private Passport passport;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_vehicle")
+    @JsonManagedReference
+    private Vehicle vehicle;
+}
+
+```
+- [Table of contents](#table-of-contents)
+# Many To Many
+
+```java
+@ManyToMany(mappedBy = "roles") // always relate to class 
+    @JsonBackReference
+    private List<User> users;
+```
+```java
+@ManyToMany(fetch = FetchType.LAZY) // not need any mapping
+    @JoinTable(
+        name="user_role",
+        joinColumns = @JoinColumn(name="user_id"),
+        inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    @JsonManagedReference
+    private Set<Role> roles;
+```
+
+```java
+@Data@Entity@AllArgsConstructor@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@Builder
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String roleName;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime addedTime;
+    @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
+    private List<User> users;
+}
+
+```
+```java
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "\"user\"")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name="user_role",
+        joinColumns = @JoinColumn(name="user_id"),
+        inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    @JsonManagedReference
+    private Set<Role> roles;
+
+    // mappedBy here refers to the 'user' variable of the 'passport' class
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_passport")
+    @JsonManagedReference
+    private Passport passport;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_vehicle")
+    @JsonManagedReference
+    private Vehicle vehicle;
+}
+
+```
