@@ -15,10 +15,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class BasicAuthSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated())
+        http.authorizeHttpRequests(customizer -> customizer
+            .requestMatchers("/*")
+            .permitAll()
+            .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-        .csrf(customizer->customizer.disable())
+        // .csrf(customizer->customizer.disable())
         .httpBasic(Customizer.withDefaults())
         ;
 

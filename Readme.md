@@ -21,6 +21,7 @@
   - [Enable basic authentrication, statless session and Disable form login](#enable-basic-authentrication-statless-session-and-disable-form-login)
   - [CORS ( Cross Origin Resource Sharing )](#cors--cross-origin-resource-sharing-)
   - [User credential can be stored in](#user-credential-can-be-stored-in)
+  - [Request matcher for allowed urls without authentication](#request-matcher-for-allowed-urls-without-authentication)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
@@ -790,3 +791,24 @@ public class BasicAuthSecurityConfiguration {
     ```
 - Database: JDBC/JPA
 - LDAP : Lightweight Directory Access Protocol 
+
+
+#### Request matcher for allowed urls without authentication
+
+```java
+
+@Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(customizer -> customizer
+            .requestMatchers("/*") // important 
+            .permitAll()
+            .anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+        // .csrf(customizer->customizer.disable())
+        .httpBasic(Customizer.withDefaults())
+        ;
+
+        return http.build();
+    }
+```
