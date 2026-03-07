@@ -19,6 +19,8 @@
 - [Many To Many](#many-to-many)
 - [Spring Security](#spring-security)
   - [Enable basic authentrication, statless session and Disable form login](#enable-basic-authentrication-statless-session-and-disable-form-login)
+  - [CORS ( Cross Origin Resource Sharing )](#cors--cross-origin-resource-sharing-)
+  - [User credential can be stored in](#user-credential-can-be-stored-in)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
@@ -767,7 +769,7 @@ public class BasicAuthSecurityConfiguration {
   - Local Configuration
     - @CrossOrigin(origins="htpps://")
 
-#### User credential can be stored in:
+#### User credential can be stored in
 - In memory: For test purpose. Not for production.
     - For single user
         `application.properties`
