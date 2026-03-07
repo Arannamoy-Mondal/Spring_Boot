@@ -1,10 +1,10 @@
-package com.java18_spring_security_project.java18_spring_security_project;
+package com.aranna.java18_spring_security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Java18SpringSecurityProjectApplicationTests {
+class Java18SpringSecurityApplicationTests {
 
 	@Test
 	void contextLoads() {

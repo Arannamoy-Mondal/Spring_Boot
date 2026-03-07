@@ -724,3 +724,65 @@ public class User {
 }
 
 ```
+
+
+- [Table of contents](#table-of-contents)
+# Spring Security
+#### Enable basic authentrication, statless session and Disable form login
+
+```java
+package com.aranna.java18_spring_security.authentication;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class BasicAuthSecurityConfiguration {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+        .csrf(customizer->customizer.disable())
+        .httpBasic(Customizer.withDefaults())
+        ;
+
+        return http.build();
+
+    }
+}
+```
+
+
+#### CORS ( Cross Origin Resource Sharing )
+- Browser don't allow AJAX calls to resource sharing outside current origin 
+- CORS: Specification that allows to configure which cross domain are allowed.
+  - Global Configuration:
+  - Local Configuration
+    - @CrossOrigin(origins="htpps://")
+
+#### User credential can be stored in:
+- In memory: For test purpose. Not for production.
+    - For single user
+        `application.properties`
+        ```yml
+        spring.security.user.name=user
+        spring.security.user.password=password
+        ```
+    - For multiple user:
+        
+    ```java
+            @Bean
+            public UserDetailsService userDetailsService(){
+                var user1=User.withUsername("user1").password("{noop}password").roles("USER").build();
+                var user2=User.withUsername("user2").password("{noop}password").roles("USER").build();
+                return new InMemoryUserDetailsManager(user1,user2);
+            }
+        
+    ```
+- Database: JDBC/JPA
+- LDAP : Lightweight Directory Access Protocol 
