@@ -794,7 +794,7 @@ public class BasicAuthSecurityConfiguration {
 
 
 #### Request matcher for allowed urls without authentication
-
+- Serial maintain important
 ```java
 
 @Bean
