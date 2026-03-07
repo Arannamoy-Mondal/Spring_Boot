@@ -17,6 +17,8 @@
 - [One To One](#one-to-one)
 - [One To Many / Many To One](#one-to-many--many-to-one)
 - [Many To Many](#many-to-many)
+- [Spring Security](#spring-security)
+  - [Enable basic authentrication, statless session and Disable form login](#enable-basic-authentrication-statless-session-and-disable-form-login)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
