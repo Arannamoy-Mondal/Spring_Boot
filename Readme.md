@@ -742,6 +742,7 @@ A[Spring Security] --> B[SecurityContextHolder]
 B[SecurityContext]-->C[Authentication]
 C[Authentication]-->D[Principal : details of user]
 C[Authentication] --> E[Credentials]
+C[Authentication] --> F[Authorities]
 ```
 
 #### Enable basic authentrication, statless session and Disable form login
