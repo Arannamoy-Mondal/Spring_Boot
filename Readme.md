@@ -22,6 +22,7 @@
   - [CORS ( Cross Origin Resource Sharing )](#cors--cross-origin-resource-sharing-)
   - [User credential can be stored in](#user-credential-can-be-stored-in)
   - [Request matcher for allowed urls without authentication](#request-matcher-for-allowed-urls-without-authentication)
+  - [JWT Authentication using Spring Boots OAuth2](#jwt-authentication-using-spring-boots-oauth2)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
