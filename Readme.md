@@ -816,7 +816,7 @@ public class BasicAuthSecurityConfiguration {
 #### JWT Authentication using Spring Boots OAuth2
 
 ```mermaid
-graph TD;
+graph TD
 A[Create Key Pair()] --> B[Create RSA Key Object Using Key Pair]
 B[Create RSA Key Object Using Key Pair]--> C[Create JWKSource]
 C[Create JWKSource] --> D[Use RSA Public Key for Decoding]
