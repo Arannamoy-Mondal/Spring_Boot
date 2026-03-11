@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -38,17 +41,18 @@ public class JwtAuthentication {
     }
 
     private String createToken(Authentication authentication){
-        JwtClaimsSet.builder().issuer("self")
+        var claim=JwtClaimsSet.builder().issuer("self")
         .issuedAt(Instant.now())
         .expiresAt(Instant.now().plusSeconds(60*24*60))
         .subject(authentication.getName())
         .claim("scope",createScope(authentication))
         .build();
-        return 
+        JwtEncoderParameters jwtEncoderParameters=JwtEncoderParameters.from(claim);
+        return jwtEncoder.encode(jwtEncoderParameters.from(claim)).getTokenValue();
     }
-    private Object createScope(Authentication authentication) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createScope'");
+    private String createScope(Authentication authentication) {
+        return authentication.getAuthorities().stream().map(a->a.getAuthority())
+        .collect(Collectors.joining(""));
     }
     
 }
