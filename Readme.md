@@ -734,6 +734,15 @@ public class User {
 
 - [Table of contents](#table-of-contents)
 # Spring Security
+#### Spring authentication 
+
+```mermaid
+graph TD;
+A[Spring Security] --> B[SecurityContextHolder]
+B[SecurityContext]-->C[Authentication]
+C[Authentication]-->D[Principal : details of user]
+```
+
 #### Enable basic authentrication, statless session and Disable form login
 
 ```java
