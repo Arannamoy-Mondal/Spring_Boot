@@ -812,3 +812,13 @@ public class BasicAuthSecurityConfiguration {
         return http.build();
     }
 ```
+
+#### JWT Authentication using Spring Boots OAuth2
+
+```mermaid
+graph LR;
+A[Create Key Pair] --> B[Create RSA Key Object Using Key Pair]
+B[Create RSA Key Object Using Key Pair]--> C[Create JWKSource]
+C[Create JWKSource] --> D[Use RSA Public Key for Decoding]
+D[Use RSA Public Key for Decoding] --> E[Use JWKSource for Encoding]
+```
