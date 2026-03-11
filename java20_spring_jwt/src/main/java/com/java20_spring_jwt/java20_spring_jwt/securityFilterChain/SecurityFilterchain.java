@@ -97,6 +97,7 @@ public class SecurityFilterchain {
         var user = org.springframework.security.core.userdetails.User.withUsername("user")
             .password(encodedPassword)
             .authorities("read")
+            .roles("USER")
             .build();
 
         return new org.springframework.security.provisioning.InMemoryUserDetailsManager(user);

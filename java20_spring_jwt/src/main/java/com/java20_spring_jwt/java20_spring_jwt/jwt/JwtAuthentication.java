@@ -5,20 +5,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
+
 public class JwtAuthentication {
 
-    private JwtEncoder jwtEncoder;
+    private final JwtEncoder jwtEncoder;
     public JwtAuthentication(JwtEncoder jwtEncoder){
         this.jwtEncoder=jwtEncoder;
     }
@@ -35,9 +38,13 @@ public class JwtAuthentication {
     }
 
 
-    @PostMapping("/authenticate/v1")
-    public JwtResponse authenticateV1(Authentication authentication) {   
-      return new JwtResponse(createToken(authentication));
+    @PostMapping("/authenticate/v1/{userName}")
+    @PreAuthorize("hasRole('USER') and #userName==authentication.name")
+    @PostAuthorize("returnObject.userName == 'user'")
+    public JwtResponse authenticateV1(Authentication authentication,@PathVariable("userName") String userName) {
+        System.out.println(userName);   
+        System.out.println(authentication.getAuthorities());
+      return new JwtResponse(createToken(authentication),userName);
     }
 
     private String createToken(Authentication authentication){
@@ -52,13 +59,13 @@ public class JwtAuthentication {
     }
     private String createScope(Authentication authentication) {
         return authentication.getAuthorities().stream().map(a->a.getAuthority())
-        .collect(Collectors.joining(""));
+        .collect(Collectors.joining(" "));
     }
     
 }
 
 
-record JwtResponse(String token) {
+record JwtResponse(String token,String userName) {
 
 
 }
