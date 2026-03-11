@@ -741,6 +741,7 @@ graph TD;
 A[Spring Security] --> B[SecurityContextHolder]
 B[SecurityContext]-->C[Authentication]
 C[Authentication]-->D[Principal : details of user]
+C[Authentication] --> E[Credentials]
 ```
 
 #### Enable basic authentrication, statless session and Disable form login
