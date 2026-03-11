@@ -815,9 +815,14 @@ public class BasicAuthSecurityConfiguration {
 
 #### JWT Authentication using Spring Boots OAuth2
 
+- Create Key Pair: java.security.KeyPairGenerator
+- Create RSA Key Object Using Key Pair: com.nimbusds.jose.jwk.RSAKey
+- Create JWKSource: JWSet and JWKSource
+- Use RSA Public Key for Decoding: NibusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build()
+- Use JWKSource for Encoding: return new NimbusJwtEncoder(jwkSource())
 ```mermaid
 graph TD;
-A[Create Key Pair](#-layer-diagram-simple) --> B[Create RSA Key Object Using Key Pair]
+A[Create Key Pair] --> B[Create RSA Key Object Using Key Pair]
 B[Create RSA Key Object Using Key Pair]--> C[Create JWKSource]
 C[Create JWKSource] --> D[Use RSA Public Key for Decoding]
 D[Use RSA Public Key for Decoding] --> E[Use JWKSource for Encoding]
