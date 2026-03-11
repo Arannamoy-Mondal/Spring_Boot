@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +27,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityFilterchain {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -33,8 +35,10 @@ public class SecurityFilterchain {
         .csrf(csrf->csrf.disable())
         .authorizeHttpRequests(customizer->
             customizer
-            .requestMatchers("/**")
-            .permitAll()
+            .requestMatchers("/authenticate")
+            .hasRole("USER")
+            // .requestMatchers("/**")
+            // .permitAll()
             .anyRequest()
             .authenticated()
         )
