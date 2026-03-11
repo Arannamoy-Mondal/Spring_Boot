@@ -18,6 +18,7 @@
 - [One To Many / Many To One](#one-to-many--many-to-one)
 - [Many To Many](#many-to-many)
 - [Spring Security](#spring-security)
+  - [Spring authentication ](#spring-authentication)
   - [Enable basic authentrication, statless session and Disable form login](#enable-basic-authentrication-statless-session-and-disable-form-login)
   - [CORS ( Cross Origin Resource Sharing )](#cors--cross-origin-resource-sharing-)
   - [User credential can be stored in](#user-credential-can-be-stored-in)
