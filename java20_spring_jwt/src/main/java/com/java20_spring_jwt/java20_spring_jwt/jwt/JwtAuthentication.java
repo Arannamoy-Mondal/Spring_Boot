@@ -2,6 +2,8 @@ package com.java20_spring_jwt.java20_spring_jwt.jwt;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.security.RolesAllowed;
+
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +41,9 @@ public class JwtAuthentication {
 
 
     @PostMapping("/authenticate/v1/{userName}")
-    @PreAuthorize("hasRole('USER') and #userName==authentication.name")
-    @PostAuthorize("returnObject.userName == 'user'")
+    // @PreAuthorize("hasRole('USER') and #userName==authentication.name")
+    // @PostAuthorize("returnObject.userName == 'user'")
+    @RolesAllowed({"ADMIN","USER"})
     public JwtResponse authenticateV1(Authentication authentication,@PathVariable("userName") String userName) {
         System.out.println(userName);   
         System.out.println(authentication.getAuthorities());
