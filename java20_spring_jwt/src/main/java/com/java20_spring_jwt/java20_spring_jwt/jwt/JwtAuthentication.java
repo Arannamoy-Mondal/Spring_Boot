@@ -54,8 +54,7 @@ public class JwtAuthentication {
         .subject(authentication.getName())
         .claim("scope",createScope(authentication))
         .build();
-        JwtEncoderParameters jwtEncoderParameters=JwtEncoderParameters.from(claim);
-        return jwtEncoder.encode(jwtEncoderParameters.from(claim)).getTokenValue();
+        return jwtEncoder.encode(JwtEncoderParameters.from(claim)).getTokenValue();
     }
     private String createScope(Authentication authentication) {
         return authentication.getAuthorities().stream().map(a->a.getAuthority())
