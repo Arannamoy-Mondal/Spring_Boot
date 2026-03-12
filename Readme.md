@@ -23,7 +23,7 @@
   - [CORS ( Cross Origin Resource Sharing )](#cors--cross-origin-resource-sharing-)
   - [User credential can be stored in](#user-credential-can-be-stored-in)
   - [Request matcher for allowed urls without authentication](#request-matcher-for-allowed-urls-without-authentication)
-  - [JWT Authentication using Spring Boots OAuth2](#jwt-authentication-using-spring-boots-oauth2)
+  - [JWT Asymmetric Authentication using Spring Boots OAuth2](#jwt-authentication-using-spring-boots-oauth2)
 
 >> sudo lsof -i :8000 && kill -9 PID
  
@@ -213,6 +213,14 @@ Database (MySQL/PostgreSQL/H2)
 
 
 ### JDBC
+`URL sample for h2`
+```bash
+spring.datasource.url=jdbc:h2:mem:testdb
+```
+`URL sample for postgres`
+```bash
+spring.datasource.url=jdbc:postgresql://localhost:5432/testdb
+```
 ### Hibernate
 - Installation postgres using podman
 
