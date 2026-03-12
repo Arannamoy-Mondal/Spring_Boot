@@ -8,4 +8,5 @@ import com.aranna.java20_spring_jwt_v2.model.User;
 @Repository
 public interface UserRepo extends JpaRepository<User,Integer>{
     User findByUserName(String userName);
+    boolean existsByUserName(String userName);
 }

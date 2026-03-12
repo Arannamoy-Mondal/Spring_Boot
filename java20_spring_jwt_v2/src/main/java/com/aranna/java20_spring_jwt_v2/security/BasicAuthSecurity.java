@@ -39,7 +39,7 @@ public class BasicAuthSecurity {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity){
         return httpSecurity.authorizeHttpRequests(customizer->
             customizer
-            .requestMatchers("/user/load")
+            .requestMatchers("/user/signup","/user/load")
             .permitAll()
             .anyRequest()
             .authenticated()
@@ -55,13 +55,8 @@ public class BasicAuthSecurity {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider=new DaoAuthenticationProvider(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance()); // deprecated
+        daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         return daoAuthenticationProvider;
-    }
-
-
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-        return new BCryptPasswordEncoder(31);
     }
    
 }
