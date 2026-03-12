@@ -17,7 +17,7 @@ public class BasicAuthSecurity {
             .anyRequest()
             .authenticated()
         )
-        .csrf(customizer->customizer.disable())
+        // .csrf(customizer->customizer.disable())
         .formLogin(customizer->customizer.disable())
         .httpBasic(Customizer.withDefaults())
         .build();

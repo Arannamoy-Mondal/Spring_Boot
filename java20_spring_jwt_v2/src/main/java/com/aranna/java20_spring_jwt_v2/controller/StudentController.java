@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -28,6 +30,11 @@ public class StudentController {
         return students;
     }
 
+    @GetMapping("/csrf")
+    public String getCSRFToken(HttpServletRequest httpServletRequest) {
+        return httpServletRequest.getAttribute("_csrf").toString();
+    }
+    
 
     @PostMapping("/add")
     public List<Student> addStudent(@RequestBody Student entity) {
