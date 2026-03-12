@@ -3,6 +3,7 @@ package com.aranna.java20_spring_jwt_v2.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -31,8 +32,8 @@ public class StudentController {
     }
 
     @GetMapping("/csrf")
-    public String getCSRFToken(HttpServletRequest httpServletRequest) {
-        return httpServletRequest.getAttribute("_csrf").toString();
+    public CsrfToken getCSRFToken(HttpServletRequest httpServletRequest) {
+        return (CsrfToken) httpServletRequest.getAttribute("_csrf");
     }
     
 
