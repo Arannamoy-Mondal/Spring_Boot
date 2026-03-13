@@ -817,7 +817,6 @@ public class BasicAuthSecurityConfiguration {
 #### Request matcher for allowed urls without authentication
 - Serial maintain important
 ```java
-
 @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(customizer -> customizer
