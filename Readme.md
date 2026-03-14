@@ -847,3 +847,5 @@ B[Create RSA Key Object Using Key Pair]--> C[Create JWKSource]
 C[Create JWKSource] --> D[Use RSA Public Key for Decoding]
 D[Use RSA Public Key for Decoding] --> E[Use JWKSource for Encoding]
 ```
+
+#### JWT using asymmetric way
