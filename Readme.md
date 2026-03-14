@@ -849,3 +849,15 @@ D[Use RSA Public Key for Decoding] --> E[Use JWKSource for Encoding]
 ```
 
 #### JWT using asymmetric way
+
+
+# Check Vulnerability
+
+```bash
+mvn org.owasp:dependency-check-maven:check
+```
+
+```bash
+mvn clean install
+mvn versions:use-latest-releases
+```
