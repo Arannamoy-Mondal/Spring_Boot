@@ -19,8 +19,12 @@ public class SecurityConfiguration {
         )
         .sessionManagement(customizer->customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .csrf(customizer->customizer.disable())
+        // .csrf(Customizer.withDefaults())
         .httpBasic(Customizer.withDefaults())
         .formLogin(customizer->customizer.disable())
         .build();
     }
+
+
+
 }
