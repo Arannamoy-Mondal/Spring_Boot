@@ -860,6 +860,9 @@ D[Use RSA Public Key for Decoding] --> E[Use JWKSource for Encoding]
 
 #### JWT using asymmetric way
 
+```java
+
+```
 
 # Check Vulnerability
 
