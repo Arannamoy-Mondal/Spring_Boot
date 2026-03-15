@@ -754,6 +754,16 @@ C[Authentication] --> E[Credentials]
 C[Authentication] --> F[Authorities]
 ```
 
+#### How does spring security work?
+
+```mermaid
+graph TD;
+A[Request]-->B[Spring Security]
+B[Spring Security] --> C[Dispatcher Servlet]
+C[Dispatcher Servlet] --> D[Controllers]
+```
+
+
 #### Enable basic authentrication, statless session and Disable form login
 
 ```java

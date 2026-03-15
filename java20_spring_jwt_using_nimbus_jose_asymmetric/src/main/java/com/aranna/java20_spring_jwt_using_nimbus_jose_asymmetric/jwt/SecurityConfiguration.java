@@ -8,14 +8,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class JwtSecurityConfiguration {
+public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity.authorizeHttpRequests(
             customizer->
             customizer
-            .requestMatchers("/**")
-            .hasRole("USER")
             .anyRequest()
             .authenticated()
         )
