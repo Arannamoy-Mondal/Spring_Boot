@@ -4,6 +4,7 @@
 - [Maven Installation](#maven-installation-for-apt-package-manager)
 - [Server run command for linux](#server-run-command-for-linux)
 - [JDBC](#jdbc)
+- [R2DBC](#r2dbc)
 - [Hibernate](#hibernate)
 - [JSP set up in VS Code](#jsp)
 - [step by step development flow spring-boot](#step-by-step-development-flow-in-spring-boot)
@@ -14,6 +15,7 @@
 - [Mockito](#mockito)
 - [.env Setup](#env-setup)
 - [Swagger Ui](#swagger-ui)
+- [Relationship](#relationship)
 - [One To One](#one-to-one)
 - [One To Many / Many To One](#one-to-many--many-to-one)
 - [Many To Many](#many-to-many)
@@ -26,6 +28,7 @@
   - [JWT Asymmetric Authentication using Spring Boots OAuth2](#jwt-authentication-using-spring-boots-oauth2)
 - [Check vulnerability](#check-vulnerability)
 - <a href="https://github.com/Arannamoy-Mondal/Microservices">Microservices</a>
+- [Spring reactive](#spring-reactive)
 >> sudo lsof -i :8000 && kill -9 PID
  
 
@@ -214,6 +217,8 @@ Database (MySQL/PostgreSQL/H2)
 
 
 ### JDBC
+` FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.`
+
 `URL sample for h2`
 ```bash
 spring.datasource.url=jdbc:h2:mem:testdb
@@ -222,7 +227,27 @@ spring.datasource.url=jdbc:h2:mem:testdb
 ```bash
 spring.datasource.url=jdbc:postgresql://localhost:5432/testdb
 ```
+
+### R2DBC:
+
+`application.properties`
+```yml
+spring.r2dbc.url=r2dbc:postgresql://localhost:5433/r2dbc_spring_reactive_1
+spring.r2dbc.username=postgres
+spring.r2dbc.password=password
+```
+`pom.xml`
+```yml
+<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>r2dbc-postgresql</artifactId>
+			<scope>runtime</scope>
+</dependency>
+```
 ### Hibernate
+
+- FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.
+
 - Installation postgres using podman
 
 ```bash
@@ -548,9 +573,95 @@ DB_URL="jdbc:postgresql://localhost:5432/project_3_account_service_db" DB_USERNA
 - Dependency: Spring OpenAPI
 URL -> http://localhost:8080/swagger-ui/index.html
 
+# Relationship
+
+- `FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.`
+- ToString.Exclude --> Don't print this field
+- JsonManagedReference --> Parent side
+- JsonBackReference --> Child side
+- JsonIgnore --> Hide forever
+- JsonIdentityInfo --> Use ID instead of repeating object
+
+| Annotation              | Library | Main Purpose                                     | Where Used | Visible in JSON Response | Prevent Infinite Loop              | Typical Use Case                                  |
+| ----------------------- | ------- | ------------------------------------------------ | ---------- | ------------------------ | ---------------------------------- | ------------------------------------------------- |
+| `@ToString`             | Lombok  | Automatically generates `toString()` method      | Class      | Not related to JSON      |  No                               | Debugging objects easily                          |
+| `@ToString.Exclude`     | Lombok  | Exclude a field from `toString()`                | Field      | Not related to JSON      |  Helps avoid loop in logs         | Bidirectional relationships when printing objects |
+| `@JsonManagedReference` | Jackson | Marks the **parent side** of relationship        | Field      |  Yes (shown in JSON)    | Yes                              | `OneToMany` parent entity                         |
+| `@JsonBackReference`    | Jackson | Marks the **child side** of relationship         | Field      |  Hidden in JSON         |  Yes                              | `ManyToOne` child entity                          |
+| `@JsonIgnore`           | Jackson | Completely ignore field from JSON                | Field      |  Hidden always          |  Not specifically for loops       | Hide password, secrets, internal data             |
+| `@JsonIdentityInfo`     | Jackson | Uses object **ID references** to avoid recursion | Class      |  Yes (with IDs)         | Yes (best for complex relations) | Large systems, complex entity graphs              |
+
+
+```java
+@Builder
+class Engine{
+    public String vendorName;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "engine")
+    @ToString.Exclude
+    @JsonBackReference
+    public List<Vehicle>vehicles;
+}
+
+@Builder
+class RegistrationNo{
+    public Integer regiNo;
+    @OneToOne(mappedBy = "regiNo")
+    @JsonBackReference
+    public Vehicle vehile;
+}
+
+
+@Builder
+class Wheel{
+
+    public String vendorName;
+    @ManyToMany(mappedBy = "wheels")
+    @ToString.Exclude
+    @JsonBackReference
+    public List<Vehicle> vehicles;
+}
+
+
+
+
+@Builder
+class SparkPlug{
+    public String vendorName;
+
+    @ManyToMany(mappedBy = "sparkPlugs")
+    public List<Vehicle> vehicles;
+}
+
+
+@Builder
+class Vehicle {
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "engine_id")
+    @JsonManagedReference
+    public Engine engine;
+
+    @OneToOne
+    @JoinColumn(name = "registration_id")
+    @JsonManagedReference
+    public RegistrationNo registrationNo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="vehicle_wheel",
+        joinColumns = @JoinColumn(name="vehicle_id"),
+        inverseJoinColumns = @JoinColumn(name="wheel_id")
+    )
+    @JsonManagedReference
+    public List<Wheel> wheels;
+}
+
+
+```
+
+
 - [Table of contents](#table-of-contents)
 # One To One 
-
+`FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.`
 ```java
 @Data
 @Entity
@@ -610,7 +721,7 @@ public class User {
 ```
 - [Table of contents](#table-of-contents)
 # One To Many / Many To One
-
+`FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.`
 ```java
 @Entity
 @Data
@@ -669,7 +780,7 @@ public class User {
 ```
 - [Table of contents](#table-of-contents)
 # Many To Many
-
+`FetchType,JoinTable,JoinColumn always owner side. Mapped by inverse side.`
 ```java
 @ManyToMany(mappedBy = "roles") // always relate to class 
     @JsonBackReference
@@ -875,3 +986,28 @@ mvn org.owasp:dependency-check-maven:check
 mvn clean install
 mvn versions:use-latest-releases
 ```
+
+# Spring Reactive
+#### Communication pattern:
+1. request -> response
+2. request -> streaming_response
+3. streaming_request -> response
+4. bi-directional
+
+#### Terminologies
+
+##### Publisher
+- Source
+- Observable
+- Upstream
+- producer
+##### Subscriber
+- Sink
+- Observer
+- Downstream
+- Consumer
+
+##### Processor 
+- Operator
+
+
