@@ -24,8 +24,9 @@ public class ChatController {
 
     @Autowired
     private ChatModel chatModel;
-    @GetMapping(value = "/answer",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Map<String,String>> getAnswer(@RequestParam String query){
+
+    @GetMapping(value = "/answerByStream",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Map<String,String>> getAnswerByStream(@RequestParam String query){
         return chatModel.stream(
             new Prompt(query,
                 OllamaChatOptions.builder()
@@ -36,6 +37,26 @@ public class ChatController {
         .map(res->{
             String content=res.getResult().getOutput().getText();
            return Map.of("text",(content!=null)?content:"");
+        // return (content!=null)?content:"";
         });
     }
+
+    @GetMapping("")
+    public Flux<String> getAnswer(@RequestParam String query){
+        return chatModel.stream(
+            new Prompt(query,
+                OllamaChatOptions.builder()
+                .model("gpt-oss:latest")
+                .build()
+            )
+        ).map(
+            res->{
+                String content=res.getResult().getOutput().getText();
+                return (content!=null)?content:" ";
+            }
+        );
+    }
+
+    
+    
 }
