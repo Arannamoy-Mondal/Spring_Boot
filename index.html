@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama SSE Chat</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9;}
+        #chatBox { 
+            border: 1px solid #ccc; 
+            padding: 20px; 
+            height: 400px; 
+            overflow-y: auto; 
+            margin-top: 20px; 
+            background: #fff; 
+            white-space: pre-wrap;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+        .input-area { margin-top: 20px; display: flex; gap: 10px; }
+        input { padding: 12px; width: 100%; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        button { padding: 12px 24px; cursor: pointer; background-color: #2196F3; color: white; border: none; border-radius: 4px; font-size: 16px; }
+        button:hover { background-color: #0b7dda; }
+    </style>
+</head>
+<body>
+
+    <h2>Chat with Spring AI (Ollama)</h2>
+    
+    <div id="chatBox"></div>
+
+    <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Ask something..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        let eventSource;
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            const chatBox = document.getElementById('chatBox');
+            
+            if (!message) return;
+
+            chatBox.innerHTML += `<b>You:</b> ${message}\n<b>AI:</b> `;
+            messageInput.value = ''; 
+
+            if (eventSource) {
+                eventSource.close();
+            }
+
+            const url = `http://localhost:8080/api/chat/stream?message=${encodeURIComponent(message)}`;
+            
+            eventSource = new EventSource(url);
+
+            eventSource.onmessage = function(event) {
+                try {
+                    const parsedData = JSON.parse(event.data);
+                    chatBox.innerHTML += parsedData.text;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                } catch (e) {
+                    console.error("JSON Parse Error:", e);
+                }
+            };
+
+            eventSource.onerror = function(error) {
+                chatBox.innerHTML += `\n\n`; 
+                eventSource.close(); 
+            };
+        }
+    </script>
+</body>
+</html>
